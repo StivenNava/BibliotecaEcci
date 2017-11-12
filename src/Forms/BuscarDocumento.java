@@ -5,7 +5,9 @@ package Forms;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import Conexion.CrudBuscar;
+import Modelo.ModeloBuscar;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Harold
@@ -18,6 +20,15 @@ public class BuscarDocumento extends javax.swing.JFrame {
     public BuscarDocumento() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Mostrar();
+    }
+    
+    void Mostrar(){
+        DefaultTableModel modelo;
+        CrudBuscar func= new CrudBuscar();
+        modelo = func.Mostrar();
+        
+        tableDatos.setModel(modelo);
     }
 
     /**
@@ -41,7 +52,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableFile = new javax.swing.JTable();
+        tableDatos = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -99,7 +110,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, -1, -1));
 
-        tableFile.setModel(new javax.swing.table.DefaultTableModel(
+        tableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -110,7 +121,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tableFile);
+        jScrollPane2.setViewportView(tableDatos);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 540, 250));
 
@@ -147,15 +158,18 @@ public class BuscarDocumento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!txtTitulo.getText().isEmpty()){
-            System.out.println("Se va a buscar por titulo");
-        }
-        else if(!txtAutor.getText().isEmpty()){
-            System.out.println("Se va a buscar por autor");
-        }
-        else if(!txtpalabra.getText().isEmpty()){
-            System.out.println("se va a buscar por palabra clave");
-        }
+        ModeloBuscar dts = new ModeloBuscar();
+        CrudBuscar func = new CrudBuscar();
+        String response = null;
+        DefaultTableModel modelo;       
+        
+            dts.setTitulo(txtTitulo.getText());
+            dts.setNombreAutor(txtAutor.getText());
+            dts.setPalabraClave(txtpalabra.getText());
+            
+            modelo = func.MostrarFiltro(dts);
+            
+            tableDatos.setModel(modelo);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -211,7 +225,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tableFile;
+    private javax.swing.JTable tableDatos;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextField txtpalabra;

@@ -63,7 +63,23 @@ public class CrudUsuarios {
         return response;
     }   
     public Boolean crearEstudian(ModelEstudiante dts){
-       Boolean Hola = false ;
-       return Hola;
+        
+        try{
+             csta = cn.prepareCall("{call sp_Crear_Usuario(?,?,?,?,?,?,?)}");
+            csta.setString(1,dts.getNombre());
+            csta.setString(2,dts.getApellido());
+            csta.setString(3,dts.getCodigo());
+            csta.setString(4,dts.getCorreo());
+            csta.setString(5,dts.getSemestre());
+            csta.setString(6,dts.getFecha());
+            csta.setString(7,dts.getCarrera());
+            
+            csta.execute(); 
+        }
+       catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+      } 
+        return response;
     }
 }
