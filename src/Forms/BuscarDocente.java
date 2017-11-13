@@ -1,5 +1,9 @@
 package Forms;
 
+import Conexion.CrudBuscarDocente;
+import Modelo.ModelBuscarDocente;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,8 +22,17 @@ public class BuscarDocente extends javax.swing.JFrame {
     public BuscarDocente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Mostrar();
+        
     }
-
+      void Mostrar(){
+        DefaultTableModel modelo;
+        CrudBuscarDocente func= new CrudBuscarDocente();
+        modelo = func.Mostrar();
+        
+        tableDatos.setModel(modelo);  
+        
+      }  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,9 +51,10 @@ public class BuscarDocente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TableFile1 = new javax.swing.JTable();
         Eliminnar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,21 +103,6 @@ public class BuscarDocente extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/profesor.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        TableFile1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(TableFile1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 470, 210));
-
         Eliminnar.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         Eliminnar.setText("Eliminar");
         Eliminnar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +111,27 @@ public class BuscarDocente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Eliminnar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 160, 30));
+
+        tableDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+            }
+        ));
+        jScrollPane3.setViewportView(tableDatos);
+
+        jScrollPane1.setViewportView(jScrollPane3);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 460, 240));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1bd3c7620a4e775dab0c2b0155b5c048.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 440));
@@ -137,6 +157,19 @@ public class BuscarDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ModelBuscarDocente dts = new ModelBuscarDocente();
+        CrudBuscarDocente func = new CrudBuscarDocente();
+        String response = null;
+        DefaultTableModel modelo;       
+        
+            dts.setApellidos(txtApellidos.getText());
+            dts.setCodigo(txtCodigo.getText());
+            
+            
+            modelo = func.MostrarFiltro(dts);
+            
+            tableDatos.setModel(modelo);
+        
         if(!txtApellidos.getText().isEmpty()){
             System.out.println("Se va a buscar por Apellidos");
         }
@@ -188,7 +221,6 @@ public class BuscarDocente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Eliminnar;
-    private javax.swing.JTable TableFile1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -197,8 +229,12 @@ public class BuscarDocente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tableDatos;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
+
+    
 }

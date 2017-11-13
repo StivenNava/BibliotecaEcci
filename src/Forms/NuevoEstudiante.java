@@ -1,5 +1,8 @@
 package Forms;
 
+import Conexion.CrudUsuarios;
+import Modelo.ModelEstudiante;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -136,6 +139,11 @@ public class NuevoEstudiante extends javax.swing.JFrame {
         btnAdd.setBackground(new java.awt.Color(255, 255, 255));
         btnAdd.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         btnAdd.setText("Añadir");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,6 +209,30 @@ public class NuevoEstudiante extends javax.swing.JFrame {
     obj.setVisible(true);
     dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        String fecha = (String)cboyear.getSelectedItem()+"-"+(String)cbomes.getSelectedItem()+"-"+(String)cbodia.getSelectedItem();
+        ModelEstudiante dts = new ModelEstudiante();
+        CrudUsuarios func = new CrudUsuarios();
+        Boolean response  = false;
+                
+        dts.setNombre(TxtNombres.getText());
+        dts.setApellido(TxtApellidos.getText());
+        dts.setCodigo(TxtCodigo.getText());
+        dts.setCorreo(TxtCorreo.getText());
+        dts.setSemestre(TxtSemestre.getText());
+        dts.setFecha(fecha);
+        dts.setCarrera((String)cboCarrera.getSelectedItem());
+         
+        response = func.CrearEstudian(dts);
+        
+        if(response){
+            System.out.println("Documento creado correctamente");
+        }
+        else{
+            System.out.println("Error en la cración del Documento");
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,8 @@
 package Forms;
 
+import Conexion.CrudUsuarios;
+import Modelo.ModelDocente;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -45,7 +48,7 @@ public class NuevoDocente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cbodia = new javax.swing.JComboBox<>();
         cbomes = new javax.swing.JComboBox<>();
-        cobyear = new javax.swing.JComboBox<>();
+        cboyear = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -123,14 +126,19 @@ public class NuevoDocente extends javax.swing.JFrame {
         cbomes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" }));
         jPanel1.add(cbomes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, 30));
 
-        cobyear.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        cobyear.setMaximumRowCount(5);
-        cobyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
-        jPanel1.add(cobyear, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, 30));
+        cboyear.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        cboyear.setMaximumRowCount(5);
+        cboyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
+        jPanel1.add(cboyear, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, 30));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jButton3.setText("Añadir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
@@ -193,6 +201,31 @@ public class NuevoDocente extends javax.swing.JFrame {
     dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        String fecha = (String)cboyear.getSelectedItem()+"-"+(String)cbomes.getSelectedItem()+"-"+(String)cbodia.getSelectedItem();
+        ModelDocente dts = new ModelDocente();
+        CrudUsuarios func = new CrudUsuarios();
+        Boolean response  = false;
+                
+        dts.setNombre(TxtNombres.getText());
+        dts.setApellido(TxtApellidos.getText());
+        dts.setCodigo(TxtCodigo.getText());
+        dts.setCorreo(TxtCorreo.getText());
+        dts.setAsignatura(TxtAsignatura.getText());
+        dts.setFecha(fecha);
+        
+         
+        response = func.CrearDocente(dts);
+        
+        if(response){
+            System.out.println("Documento creado correctamente");
+        }
+        else{
+            System.out.println("Error en la cración del Documento");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,7 +270,7 @@ public class NuevoDocente extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cbodia;
     private javax.swing.JComboBox<String> cbomes;
-    private javax.swing.JComboBox<String> cobyear;
+    private javax.swing.JComboBox<String> cboyear;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

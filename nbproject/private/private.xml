@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Registro.java</file>
-            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/javaapplication4/JavaApplication4.java</file>
-            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Conexion/RegistrarUsuario.java</file>
-            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Conexion/ConexionBD.java</file>
+            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Forms/BuscarEstudiante.java</file>
+            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Forms/BuscarDocente.java</file>
+            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Modelo/ModelBuscarEstudiante.java</file>
+            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Conexion/CrudBuscarDocente.java</file>
+            <file>file:/C:/Users/kathe/OneDrive/Documentos/NetBeansProjects/JavaApplication4/src/Conexion/CrudBuscarEstudiante.java</file>
         </group>
     </open-files>
 </project-private>

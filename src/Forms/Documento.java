@@ -115,7 +115,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Apellido Autor:");
+        jLabel7.setText("Apellido Autor1:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -144,12 +144,12 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Nombre Autor:");
+        jLabel10.setText("Nombre Autor1:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Código Autor:");
+        jLabel11.setText("Código Autor1:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -162,7 +162,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Nombre Autor:");
+        jLabel13.setText("Nombre Autor2:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, -1, 30));
 
         TxtAI.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -170,7 +170,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Código Autor:");
+        jLabel14.setText("Código Autor2:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, -1, 30));
 
         TxtCA2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -178,7 +178,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Apellido Autor:");
+        jLabel15.setText("Apellido Autor3:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, -1, 30));
 
         TxtAA3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -186,7 +186,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Nombre Autor:");
+        jLabel16.setText("Nombre Autor3:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, 30));
 
         TxtNA3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -194,7 +194,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Código Autor:");
+        jLabel17.setText("Código Autor3:");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, -1, 30));
 
         TxtCA3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -215,7 +215,7 @@ public class Documento extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Apellido Autor:");
+        jLabel18.setText("Apellido Autor2:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, 30));
 
         jLabel21.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
