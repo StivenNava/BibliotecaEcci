@@ -97,5 +97,17 @@ public class CrudBuscarEstudiante {
             return null;
         }
     }
+    public Boolean EliminarEstudiante(String codigo) {
+        try {
+            csta = cn.prepareCall("{call sp_EliminarEstudiante(?)}");
+            csta.setString(1, codigo);
+
+            csta.execute();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }
+        return true;    
+    }
 }
 

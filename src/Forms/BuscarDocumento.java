@@ -8,6 +8,8 @@ package Forms;
 import Conexion.CrudBuscar;
 import Modelo.ModeloBuscar;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import Conexion.CrudDocumentos;
 /**
  *
  * @author Harold
@@ -182,9 +184,22 @@ public class BuscarDocumento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        txtTitulo.setText("");
-        txtAutor.setText(" ");
-        txtpalabra.setText(" ");
+        CrudDocumentos func = new CrudDocumentos();
+        int Fila = tableDatos.getSelectedRow();
+        Boolean response  = false;        
+        String titulo = null;
+        
+        if (Fila >= 0){
+            titulo = (tableDatos.getValueAt(Fila, 0).toString());
+            response = func.EliminarDocumento(titulo);
+        }
+        if(response){
+            Mostrar();
+            JOptionPane.showMessageDialog(null, "Documento Eliminado correctamente");
+        }
+        else{
+                JOptionPane.showMessageDialog(null, "Error en la eliminación del Documento");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

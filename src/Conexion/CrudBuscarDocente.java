@@ -80,6 +80,19 @@ public class CrudBuscarDocente {
             return null;
         }
     }
+    
+    public Boolean EliminarDocente(String codigo) {
+        try {
+            csta = cn.prepareCall("{call sp_EliminarDocente(?)}");
+            csta.setString(1, codigo);
+
+            csta.execute();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }
+        return true;    
+    }
 }
 
    

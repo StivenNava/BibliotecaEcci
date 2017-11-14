@@ -2,6 +2,7 @@ package Forms;
 
 import Conexion.CrudBuscarEstudiante;
 import Modelo.ModelBuscarEstudiante;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -173,16 +174,24 @@ public class BuscarEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     if(!txtApellidos.getText().isEmpty()){
-            System.out.println("Se va a buscar por Apellidos");
+        CrudBuscarEstudiante func = new CrudBuscarEstudiante();
+        int Fila = tableDatos.getSelectedRow();
+        Boolean response  = false;        
+        String codigo = null;
+        
+        if (Fila >= 0){
+            codigo = (tableDatos.getValueAt(Fila, 2).toString());
+            response = func.EliminarEstudiante(codigo);
         }
-        else if(!txtCodigo.getText().isEmpty()){
-            System.out.println("Se va a buscar por Codigo");  
-        }   
-     else if(!txtCarrera.getText().isEmpty()){
-            System.out.println("Se va a buscar por Carrera");// TODO add your handling code here:
+        if(response){
+            Mostrar();
+            JOptionPane.showMessageDialog(null, "Estudiante Eliminado correctamente");
+        }
+        else{
+                JOptionPane.showMessageDialog(null, "Error en la eliminación del Estudiante");
+        }            
     }//GEN-LAST:event_jButton1ActionPerformed
-    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ModelBuscarEstudiante dts = new ModelBuscarEstudiante();
         CrudBuscarEstudiante func = new CrudBuscarEstudiante();

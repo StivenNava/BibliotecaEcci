@@ -68,4 +68,16 @@ public class CrudDocumentos {
         
         return response;        
     }
+    public Boolean EliminarDocumento(String titulo) {
+        try {
+            csta = cn.prepareCall("{call sp_EliminarDocumento(?)}");
+            csta.setString(1, titulo);
+
+            csta.execute();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }
+        return true;    
+    }
 }

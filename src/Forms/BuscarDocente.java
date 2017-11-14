@@ -2,6 +2,7 @@ package Forms;
 
 import Conexion.CrudBuscarDocente;
 import Modelo.ModelBuscarDocente;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -127,6 +128,11 @@ public class BuscarDocente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
+        tableDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDatosMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tableDatos);
 
         jScrollPane1.setViewportView(jScrollPane3);
@@ -178,9 +184,26 @@ public class BuscarDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     }
     private void EliminnarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminnarActionPerformed
-        txtApellidos.setText("");
-        txtCodigo.setText(" ");// TODO add your handling code here:
+        CrudBuscarDocente func = new CrudBuscarDocente();
+        int Fila = tableDatos.getSelectedRow();
+        Boolean response  = false;        
+        String codigo = null;
+        
+        if (Fila >= 0){
+            codigo = (tableDatos.getValueAt(Fila, 2).toString());
+            response = func.EliminarDocente(codigo);
+        }
+        if(response){
+            Mostrar();
+            JOptionPane.showMessageDialog(null, "Docente Eliminado correctamente");
+        }
+        else{
+                JOptionPane.showMessageDialog(null, "Error en la eliminación del Docente");
+        }        
     }//GEN-LAST:event_EliminnarActionPerformed
+
+    private void tableDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDatosMouseClicked
+    }//GEN-LAST:event_tableDatosMouseClicked
    
     /**
      * 
