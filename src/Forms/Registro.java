@@ -141,7 +141,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel10.setText("Fecha:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, 30));
 
-        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel1.add(cbodia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 60, 30));
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -218,8 +218,46 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String fecha = (String)cboyear.getSelectedItem()+"-"+(String)cbomes.getSelectedItem()+"-"+(String)cbodia.getSelectedItem();
+        String Mes = null;
+        switch((String)cbomes.getSelectedItem()){            
+            case "ENE":
+            Mes="01";
+            break;
+            case "FEB":
+            Mes="02";
+            break;
+            case "MAR":
+            Mes="03";
+            break;
+            case "ABR":
+            Mes="04";
+            break;
+            case "MAY":
+            Mes="05";
+            break;
+            case "JUN":
+            Mes="06";
+            break;
+            case "JUL":
+            Mes="07";
+            break;
+            case "AGO":
+            Mes="08";
+            break;
+            case "SEP":
+            Mes="09";
+            break;
+            case "OCT":
+            Mes="10";
+            break;
+            case "NOV":
+            Mes="11";
+            break;
+            case "DIC":
+            Mes="12";
+            break;            
+        }        
+        String fecha = (String)cboyear.getSelectedItem()+Mes+(String)cbodia.getSelectedItem();
         ModelRegistarUsuario dts = new ModelRegistarUsuario();
         CrudUsuarios func = new CrudUsuarios();
         Boolean response = false;

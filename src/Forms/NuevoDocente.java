@@ -144,7 +144,7 @@ public class NuevoDocente extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Limpiar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
