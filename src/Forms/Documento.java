@@ -2,7 +2,7 @@ package Forms;
 
 import Conexion.CrudDocumentos;
 import Modelo.ModelDocumento;
-
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -249,7 +249,7 @@ public class Documento extends javax.swing.JFrame {
         cboyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
         jPanel1.add(cboyear, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, 30));
 
-        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel1.add(cbodia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 60, 30));
 
         cbomes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" }));
@@ -289,37 +289,87 @@ public class Documento extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtProgramaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String fecha = (String)cboyear.getSelectedItem()+"-"+(String)cbomes.getSelectedItem()+"-"+(String)cbodia.getSelectedItem();
+        String Mes = null;
+        switch((String)cbomes.getSelectedItem()){            
+            case "ENE":
+            Mes="01";
+            break;
+            case "FEB":
+            Mes="02";
+            break;
+            case "MAR":
+            Mes="03";
+            break;
+            case "ABR":
+            Mes="04";
+            break;
+            case "MAY":
+            Mes="05";
+            break;
+            case "JUN":
+            Mes="06";
+            break;
+            case "JUL":
+            Mes="07";
+            break;
+            case "AGO":
+            Mes="08";
+            break;
+            case "SEP":
+            Mes="09";
+            break;
+            case "OCT":
+            Mes="10";
+            break;
+            case "NOV":
+            Mes="11";
+            break;
+            case "DIC":
+            Mes="12";
+            break;            
+        }        
+        String fecha = (String)cboyear.getSelectedItem()+Mes+(String)cbodia.getSelectedItem();
         ModelDocumento dts = new ModelDocumento();
         CrudDocumentos func = new CrudDocumentos();
         Boolean response = false;
-                
-        dts.setTitulo(TxtTitulo.getText());
-        dts.setTipodeDocumento(TxtTipoD.getText());
-        dts.setColeccion(TxtColeccion.getText());
-        dts.setPrograma(TxtPrograma.getText());
-        dts.setFecha(fecha);
-        dts.setApellidoAutor1(TxtAA1.getText());
-        dts.setNombreAutor1(TxtNA1.getText());
-        dts.setCodigoAutor1(TxtCA1.getText());
-        dts.setApellidoAutor2(TxtAA2.getText());
-        dts.setNombreAutor2(TxtNA2.getText());
-        dts.setCodigoAutor2(TxtCA2.getText());
-        dts.setApellidoAutor3(TxtAA3.getText());
-        dts.setNombreAutor3(TxtNA3.getText());
-        dts.setCodigoAutor3(TxtCA3.getText());
-        dts.setAbstractEspanol(TxtAE.getText());
-        dts.setAbstractIngles(TxtAI.getText());
-        dts.setConclusionEspanol(TxtCE.getText());
-        dts.setConclusionIngles(TxtCI.getText());
-       
-        response = func.CrearDocumento(dts);
+        String val = null;
+
+        val = func.ValDocumento(TxtTitulo.getText());
         
-        if(response){
-            System.out.println("Documento creado correctamente");
+        if (val.equals("1")){
+            JOptionPane.showMessageDialog(null, "El documento ya existe en la Base de datos");   
+        }
+        else if(val.equals("2")){
+            dts.setTitulo(TxtTitulo.getText());
+            dts.setTipodeDocumento(TxtTipoD.getText());
+            dts.setColeccion(TxtColeccion.getText());
+            dts.setPrograma(TxtPrograma.getText());
+            dts.setFecha(fecha);
+            dts.setApellidoAutor1(TxtAA1.getText());
+            dts.setNombreAutor1(TxtNA1.getText());
+            dts.setCodigoAutor1(TxtCA1.getText());
+            dts.setApellidoAutor2(TxtAA2.getText());
+            dts.setNombreAutor2(TxtNA2.getText());
+            dts.setCodigoAutor2(TxtCA2.getText());
+            dts.setApellidoAutor3(TxtAA3.getText());
+            dts.setNombreAutor3(TxtNA3.getText());
+            dts.setCodigoAutor3(TxtCA3.getText());
+            dts.setAbstractEspanol(TxtAE.getText());
+            dts.setAbstractIngles(TxtAI.getText());
+            dts.setConclusionEspanol(TxtCE.getText());
+            dts.setConclusionIngles(TxtCI.getText());
+
+            response = func.CrearDocumento(dts);
+            
+            if(response){
+                JOptionPane.showMessageDialog(null, "Documento creado correctamente");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error en la creacion del documento");
+            }
         }
         else{
-            System.out.println("Error en la cración del Documento");
+            JOptionPane.showMessageDialog(null, "Error en la creacion del documento");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

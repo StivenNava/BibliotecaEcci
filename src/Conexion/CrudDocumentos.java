@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 public class CrudDocumentos {
-
+    ResultSet rs;
     private ConexionBD con = new ConexionBD();
     private Connection cn = con.Conexion();
     Boolean response = false;
@@ -47,5 +47,25 @@ public class CrudDocumentos {
             return false;
         }
         return true;
+    }
+    
+    public String ValDocumento(String titulo){
+        String response = null;
+        try {
+            csta = cn.prepareCall("{call sp_ValDocumento(?)}");            
+            csta.setString(1, titulo);
+            
+            rs = csta.executeQuery();
+            
+            while (rs.next()) {
+                response = rs.getString(1);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+            response="0";
+        }
+        
+        return response;        
     }
 }

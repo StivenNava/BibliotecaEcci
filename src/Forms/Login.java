@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Conexion.CrudUsuarios;
 import Modelo.ModelLogin;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -141,12 +142,16 @@ public class Login extends javax.swing.JFrame{
         response = func.Login(dts);
 
         if(response.equals("1")){
+            JOptionPane.showMessageDialog(null, "Usuario logueado correctamente");
             Solicitud obj = new Solicitud();
             obj.setVisible(true);
             dispose();   // TODO add your handling code here:
         }
-        else {
-            System.out.println("Error en el login");
+        else if(response.equals("2")) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "El usuario no existe, por favor realice el registro!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

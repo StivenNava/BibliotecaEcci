@@ -61,13 +61,12 @@ public class CrudUsuarios {
             }
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
-
+            response = "0";
         }
         return response;
     }
 
     public Boolean CrearEstudian(ModelEstudiante dts) {
-
         try {
             csta = cn.prepareCall("{call sp_Crear_Estudian(?,?,?,?,?,?,?)}");
             csta.setString(1, dts.getNombre());
@@ -83,7 +82,7 @@ public class CrudUsuarios {
             JOptionPane.showConfirmDialog(null, e);
             return false;
         }
-        return response;
+        return true;
     }
     public Boolean CrearDocente(ModelDocente dts) {
 
@@ -94,15 +93,50 @@ public class CrudUsuarios {
             csta.setString(3, dts.getCodigo());
             csta.setString(4, dts.getCorreo());
             csta.setString(5, dts.getAsignatura());
-            csta.setString(6, dts.getFecha());
-            
+            csta.setString(6, dts.getFecha());            
 
             csta.execute();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;
         }
-        return response;
+        return true;
+    }
+    public String ValCodigoDocente(String codigo){
+        String response = null;
+        try {
+            csta = cn.prepareCall("{call sp_ValDocente(?)}");            
+            csta.setString(1, codigo);
+            
+            rs = csta.executeQuery();
+            
+            while (rs.next()) {
+                response = rs.getString(1);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+            response="0";
+        }        
+        return response;        
+    }
+    public String ValCodigoEstudiante(String codigo){
+        String response = null;
+        try {
+            csta = cn.prepareCall("{call sp_ValEstudiante(?)}");            
+            csta.setString(1, codigo);
+            
+            rs = csta.executeQuery();
+            
+            while (rs.next()) {
+                response = rs.getString(1);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+            response="0";
+        }        
+        return response;        
     }
 
 }

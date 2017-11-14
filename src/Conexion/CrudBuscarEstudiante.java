@@ -4,6 +4,7 @@ package Conexion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,6 +76,22 @@ public class CrudBuscarEstudiante {
                 modelo.addRow(Registro);
             }
             return modelo;
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+    public DefaultComboBoxModel CargarCarrera(){
+        DefaultComboBoxModel modelo;        
+        modelo = new DefaultComboBoxModel();
+        try {
+            csta = cn.prepareCall("{call sp_CargarCarrera}");                      
+            rs = csta.executeQuery();
+
+           while (rs.next()) {                
+                modelo.addElement(rs.getString(1));
+            }
+           return modelo;
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
             return null;

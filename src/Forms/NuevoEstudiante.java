@@ -1,7 +1,9 @@
 package Forms;
 
+import Conexion.CrudBuscarEstudiante;
 import Conexion.CrudUsuarios;
 import Modelo.ModelEstudiante;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +22,8 @@ public class NuevoEstudiante extends javax.swing.JFrame {
      */
     public NuevoEstudiante() {
         initComponents();
+        CrudBuscarEstudiante carrera = new CrudBuscarEstudiante();
+        cboCarrera.setModel(carrera.CargarCarrera());
         this.setLocationRelativeTo(null);
     }
 
@@ -100,7 +104,7 @@ public class NuevoEstudiante extends javax.swing.JFrame {
 
         cbodia.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         cbodia.setMaximumRowCount(5);
-        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel1.add(cbodia, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 60, 30));
 
         cbomes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -170,8 +174,7 @@ public class NuevoEstudiante extends javax.swing.JFrame {
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 70, 90));
 
         cboCarrera.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        cboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Ing. Sistemas", "Ing. Industrial", "Ing. Plásticos", "Ing. Biomédica", "Otra" }));
-        jPanel1.add(cboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 90, 30));
+        jPanel1.add(cboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 110, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1bd3c7620a4e775dab0c2b0155b5c048.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 560));
@@ -211,27 +214,82 @@ public class NuevoEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String fecha = (String)cboyear.getSelectedItem()+"-"+(String)cbomes.getSelectedItem()+"-"+(String)cbodia.getSelectedItem();
+        if(((String)cboCarrera.getSelectedItem()).contains("Seleccione")){
+            JOptionPane.showMessageDialog(null, "Seleccione una carrera por favor");    
+        }
+        else{
+        String Mes = null;
+        switch((String)cbomes.getSelectedItem()){            
+            case "ENE":
+            Mes="01";
+            break;
+            case "FEB":
+            Mes="02";
+            break;
+            case "MAR":
+            Mes="03";
+            break;
+            case "ABR":
+            Mes="04";
+            break;
+            case "MAY":
+            Mes="05";
+            break;
+            case "JUN":
+            Mes="06";
+            break;
+            case "JUL":
+            Mes="07";
+            break;
+            case "AGO":
+            Mes="08";
+            break;
+            case "SEP":
+            Mes="09";
+            break;
+            case "OCT":
+            Mes="10";
+            break;
+            case "NOV":
+            Mes="11";
+            break;
+            case "DIC":
+            Mes="12";
+            break;            
+        }
+        String fecha = (String)cboyear.getSelectedItem()+Mes+(String)cbodia.getSelectedItem();
         ModelEstudiante dts = new ModelEstudiante();
         CrudUsuarios func = new CrudUsuarios();
         Boolean response  = false;
-                
-        dts.setNombre(TxtNombres.getText());
-        dts.setApellido(TxtApellidos.getText());
-        dts.setCodigo(TxtCodigo.getText());
-        dts.setCorreo(TxtCorreo.getText());
-        dts.setSemestre(TxtSemestre.getText());
-        dts.setFecha(fecha);
-        dts.setCarrera((String)cboCarrera.getSelectedItem());
-         
-        response = func.CrearEstudian(dts);
+        String val = null;
+
+        val = func.ValCodigoEstudiante(TxtCodigo.getText());
         
-        if(response){
-            System.out.println("Documento creado correctamente");
+        if (val.equals("1")){
+            JOptionPane.showMessageDialog(null, "El Estudiante ya existe en la Base de datos");   
+        }
+        else if(val.equals("2")){           
+            dts.setNombre(TxtNombres.getText());
+            dts.setApellido(TxtApellidos.getText());
+            dts.setCodigo(TxtCodigo.getText());
+            dts.setCorreo(TxtCorreo.getText());
+            dts.setSemestre(TxtSemestre.getText());
+            dts.setFecha(fecha);
+            dts.setCarrera((String)cboCarrera.getSelectedItem());
+
+            response = func.CrearEstudian(dts);
+
+            if(response){
+                JOptionPane.showMessageDialog(null, "Estudiante creado correctamente");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error en la creación del Estudiante");
+            }
         }
         else{
-            System.out.println("Error en la cración del Documento");
-        }
+                JOptionPane.showMessageDialog(null, "Error en la creación del Estudiante");
+            }
+        }        
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
